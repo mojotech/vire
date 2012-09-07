@@ -1,7 +1,7 @@
 Vire
 ==========
 
-Vire.js is a jQuery plugin that extends the froogaloop library for the Vimeo player. It allows you to execute code at a given point in time. Here's a demo: http://blog.mojotech.com/vire
+Vire.js is a jQuery plugin that extends the froogaloop library for the Vimeo player. It allows you to execute code at a given point in time in a video. Here's a demo: http://blog.mojotech.com/vire
 
 Credits
 ==========
