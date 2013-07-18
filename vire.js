@@ -2,17 +2,25 @@
   $.fn.vire = function(args) {
     var events = {};
     var froogInstance = $f(this.attr('id'));
-    froogInstance.addEvent('ready', checkTime);
-    
+    froogInstance.addEvent('ready', bindEvents);
+
     function v_add(eventTime, cb) {
       events[eventTime] = {
         callback: cb,
         fired: false
       }
+
+      if(eventTime == 'finish')
+        bindFinishEvent()
     }
 
     function addEvent(element, eventName, callback) {
       $(element).on(eventName, callback);
+    }
+
+    function bindEvents() {
+      checkTime();
+      bindFinishEvent();
     }
 
     function checkTime() {
@@ -23,6 +31,15 @@
           events[curTime].fired = true;
         }
       });
+    }
+
+    function bindFinishEvent() {
+      if (events.finish && !events.finish.fired) {
+        froogInstance.addEvent('finish', function(data) {
+          events.finish.callback();
+          events.finish.fired = true;
+        })
+      };
     }
 
     function setConstructorEvents(args) {
